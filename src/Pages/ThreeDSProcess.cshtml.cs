@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace Test_Shop_Razor.Pages
 {
     [IgnoreAntiforgeryToken]
-    public class ThreeDSIProcessModel : PageModel
+    public class ThreeDSProcessModel : PageModel
     {
         [BindProperty(Name = "amount")]
         public decimal Amount { get; set; }
