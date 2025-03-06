@@ -2,7 +2,7 @@
 
 3D Secure integration samples
 
-To integrate 3D Secure 2.0 with your payment page, you can implement the following options:
+To integrate 3D Secure 2.2 with your payment page, you can implement the following options:
 
 ## Wapper v1
 
