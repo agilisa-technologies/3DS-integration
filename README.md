@@ -2,9 +2,14 @@
 
 3D Secure integration samples
 
-## Integrate 3D Secure 2.0 with your payment page
+To integrate 3D Secure 2.0 with your payment page, you can implement the following options:
 
-To send a request to page ThreeDSIFrame, POST a request with the following parameters:
+## Wapper v1
+
+Integrate 3D Secure capturing the credit card details on your payment page, and send the information to /ThreeDSProcess page. 
+A sample request page is located on /src/Pages/ThreeDSMain
+
+To send a request to page /ThreeDSProcess, POST a request with the following parameters:
 
 | Parameter | Description |
 | --- | --- |
@@ -13,9 +18,54 @@ To send a request to page ThreeDSIFrame, POST a request with the following param
 | `month` | Expiry Month |
 | `year` | Expiry Year |
 | `successUrl` | Final POST page to send results |
-| --- | --- |
+
 
 The page will process the 3DS flow to authenticate the card holder.
+
+## Wapper v2
+
+ Integrate 3D Secure capturing the credit card details on your payment page, integrate to 3DS using API, and delegate the Challenge process to a wrapper page (/ThreeDSHandler).
+ A sample request page is located on /src/Pages/ThreeDSSample
+
+In this sample the connection to 3DS Servers is done using the available APIs (view [text](https://docs.3dsintegrator.com/docs/3ds-api)) calling Authenticate and GetResult endpoints
+The information from both responses, is combined and POSTed to //ThreeDSHandler
+
+| Parameter | Description |
+| --- | --- |
+| `ThreeAuthResponse` | combined JSON from APIs |
+| `successUrl` | Final POST page to send results |
+
+
+
+A sample json for ThreeAuthResponse field:
+
+``` json
+{
+    "methodURL": "https://acs-server-sandbox.3dsintegrator.com/v2/fingerprint",
+    "protocolVersion": "2.2.0",
+    "correlationId": "1f9ccf06-fa2c-11ef-96b5-0242ac110004",
+    "transactionId": "3090a636-fa2c-11ef-96b5-0242ac110004",
+    "threeDSMethodData": "eyJ0aHJlZURTTWV0aG9k...MTEwMDA0In0",
+    "scaIndicator": false,
+    "status": "C",
+    "creq": "eyJtZXN...SI6IjAxIn0",
+    "authenticationType": "01",
+    "challengeWindowURL": {
+        "href": "/authenticate/challenge/3090a636-fa2c-11ef-96b5-0242ac110004",
+        "rel": "authenticate",
+        "type": "GET"
+    },
+    "dsTransId": "2adfc378-c5f1-41ee-9b3e-feb699b66101",
+    "acsTransId": "d6f15aae-2c9d-4333-a920-954be07c0c76",
+    "acsURL": "https://acs-server-sandbox.3dsintegrator.com/v2/challenge/ui",
+    "transStatusReasonDetail": "Medium confidence",
+    "transStatusReason": "16"
+}
+```
+
+## Integrate 3D Secure 2.0 with your payment page
+
+After you obtain the 3DS authentication data 
 
 ## Receiving the 3DS response
 
