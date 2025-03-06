@@ -37,32 +37,6 @@
 
     function submitForm() {
         const amountDecimal = parseFloat(document.querySelector('input[name="amount"]').value);
-
-                var response =
-    {
-        methodURL: "https://acs-server-sandbox.3dsintegrator.com/v2/fingerprint",
-        protocolVersion: "2.2.0",
-        correlationId: "e322b24b-fa25-11ef-96b5-0242ac110004",
-        transactionId: "e7f9d29a-fa26-11ef-96b5-0242ac110004",
-        threeDSMethodData: "eyJ0aHJlZURTTWV0aG9kTm90aWZpY2F0aW9uVVJMIjoiaHR0cHM6Ly9yZXNwb25zZS1zYW5kYm94LjNkc2ludGVncmF0b3IuY29tL3VzLWVhc3QtMS92Mi4yL2ZpbmdlcnByaW50L2U3ZjlkMjlhLWZhMjYtMTFlZi05NmI1LTAyNDJhYzExMDAwNCIsInRocmVlRFNTZXJ2ZXJUcmFuc0lEIjoiZTdmOWQyOWEtZmEyNi0xMWVmLTk2YjUtMDI0MmFjMTEwMDA0In0",      
-        scaIndicator: false,
-        status: "C",
-        creq: "eyJtZXNzYWdlVHlwZSI6IkNSZXEiLCJtZXNzYWdlVmVyc2lvbiI6IjIuMi4wIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiJlN2Y5ZDI5YS1mYTI2LTExZWYtOTZiNS0wMjQyYWMxMTAwMDQiLCJhY3NUcmFuc0lEIjoiZDZmMTVhYWUtMmM5ZC00MzMzLWE5MjAtOTU0YmUwN2MwYzc2IiwiY2hhbGxlbmdlV2luZG93U2l6ZSI6IjAxIn0",
-        authenticationType: "01",
-        challengeWindowURL: {
-            href: "/authenticate/challenge/e7f9d29a-fa26-11ef-96b5-0242ac110004",
-            rel: "authenticate",
-            type: "GET"
-        },
-        dsTransId: "388ade7a-4c0b-4a2f-a096-6530e212bc25",
-        acsTransId: "d6f15aae-2c9d-4333-a920-954be07c0c76",
-        acsURL: "https://acs-server-sandbox.3dsintegrator.com/v2/challenge/ui",
-        transStatusReasonDetail: "Medium confidence",
-        transStatusReason: "16"
-    };
-        tds.transactionLastUpdatedTime = "";
-        handleVerify(response, handleResponse, handleError);
-     /*
         tds.verify(
             handleResponse,
             handleError,
@@ -72,26 +46,7 @@
             handleRebillResponse,
             handleRebillError
         );
-       */
-    }
-
-    function handleVerify(response, resolve, reject){
-        var isRebill = false;
-        tds.threeDsTransactionId = response.transactionId;
-        tds.getToken(function(){});
-        tds.protocolVersion = response.protocolVersion;
-        if (parseFloat(response.protocolVersion) >= 2) 
-            "methodURL" in response && tds.createIframe({
-            threeDSMethodData: response.threeDSMethodData,
-            methodURL: response.methodURL
-        });
-        
-        if (!isRebill) {
-            var endDate = new Date;
-            tds.timeTakenForInitial = tds.getTimeElapsed(startDate, endDate)
-        }
-        tds.pollingResponse = response;
-        tds.processChallengeStatus(response.status, resolve, reject, isRebill);
+      
     }
 
     function handleResponse(response) {
