@@ -1,0 +1,50 @@
+﻿@page
+@model ThreeDS.Pages.ThreeDSSampleModel
+@{
+}
+<div style="width:80%; margin:0 auto;">
+    <h2>Esta pagina simula la aplicacion que enviara la informacion de Pago</h2>
+    <p>
+    </p>
+
+    <div class="alert alert-info">
+        Este formulario es para simular el proceso de autenticación 3DSecure.<br />
+        En esta version se envia la informacion conjunta JSON luego de ejecutar Authenticate() y GetResult()<br />
+        Envie la informacion del formulario al url <b>/ThreeDSHandler</b>
+    </div>
+
+    <form id="billing-form" action="/ThreeDSHandler" method="POST">
+        <button type="submit">Submit</button>
+        <div class="mb-3">
+            <label for="successUrl">Success Target URL (web)</label>
+            <input type="text" name="successUrl" style="width:80%;" value="/ThreeDSResult" />
+        </div>
+
+        <div class="mb-3">
+            <label for="AuthResponse" class="form-label">Response</label>
+            <textarea id="AuthResponse" name="AuthResponse" class="form-control" style="width:80%; height: 250px;">{
+                "methodURL": "https://acs-server-sandbox.3dsintegrator.com/v2/fingerprint",
+                "protocolVersion": "2.2.0",
+                "correlationId": "1f9ccf06-fa2c-11ef-96b5-0242ac110004",
+                "transactionId": "3090a636-fa2c-11ef-96b5-0242ac110004",
+                "threeDSMethodData": "eyJ0aHJlZURTTWV0aG9kTm90aWZpY2F0aW9uVVJMIjoiaHR0cHM6Ly9yZXNwb25zZS1zYW5kYm94LjNkc2ludGVncmF0b3IuY29tL3VzLWVhc3QtMS92Mi4yL2ZpbmdlcnByaW50LzMwOTBhNjM2LWZhMmMtMTFlZi05NmI1LTAyNDJhYzExMDAwNCIsInRocmVlRFNTZXJ2ZXJUcmFuc0lEIjoiMzA5MGE2MzYtZmEyYy0xMWVmLTk2YjUtMDI0MmFjMTEwMDA0In0",
+                "scaIndicator": false,
+                "status": "C",
+                "creq": "eyJtZXNzYWdlVHlwZSI6IkNSZXEiLCJtZXNzYWdlVmVyc2lvbiI6IjIuMi4wIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiIzMDkwYTYzNi1mYTJjLTExZWYtOTZiNS0wMjQyYWMxMTAwMDQiLCJhY3NUcmFuc0lEIjoiZDZmMTVhYWUtMmM5ZC00MzMzLWE5MjAtOTU0YmUwN2MwYzc2IiwiY2hhbGxlbmdlV2luZG93U2l6ZSI6IjAxIn0",
+                "authenticationType": "01",
+                "challengeWindowURL": {
+                    "href": "/authenticate/challenge/3090a636-fa2c-11ef-96b5-0242ac110004",
+                    "rel": "authenticate",
+                    "type": "GET"
+                },
+                "dsTransId": "2adfc378-c5f1-41ee-9b3e-feb699b66101",
+                "acsTransId": "d6f15aae-2c9d-4333-a920-954be07c0c76",
+                "acsURL": "https://acs-server-sandbox.3dsintegrator.com/v2/challenge/ui",
+                "transStatusReasonDetail": "Medium confidence",
+                "transStatusReason": "16"
+            }
+            </textarea>
+        </div>
+
+    </form>
+</div>

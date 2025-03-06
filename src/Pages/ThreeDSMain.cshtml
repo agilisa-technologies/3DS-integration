@@ -5,7 +5,12 @@
 <div style="width:80%; margin:0 auto;">
     <h2>Esta pagina simula la aplicacion que enviara la informacion de Pago (Main Page)</h2>
 
-    <div class="alert alert-info">Este formulario es para simular el proceso de autenticación 3DSecure.</div>
+    <div class="alert alert-info">
+        Este formulario es para simular el proceso de autenticación 3DSecure.<br />
+        En esta version se envia la informacion del tarjeta capturada<br />
+        Envie la informacion del formulario al url <b>/ThreeDSProcess</b>
+
+    </div>
 
     <form id="billing-form" action="/ThreeDSProcess" method="POST" >
         <!-- Add the data-threeds="" DOM elements tags in your payment form-->
